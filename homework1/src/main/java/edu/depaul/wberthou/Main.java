@@ -11,11 +11,10 @@ public class Main {
         FileReader reader = new FileReader();
         String json = reader.readFile("campus.json");
 
+        System.out.println(json);
 
         Gson gson = new Gson();
         JsonObject j = new JsonObject();
-
-
 
     }
 
