@@ -1,21 +1,22 @@
 package edu.depaul.wberthou;
 
-import java.io.IOException;
+import edu.depaul.wberthou.graph.Graph;
+import edu.depaul.wberthou.iterativeDeepeningDFS.IterativeDeepeningDFS;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
+/**
+ * Assignment 1
+ * 2. 20 Points: Iterative Deepening Depth First Search
+ * Consider just the connectivity of the locations in the graph above. Write an iterative
+ * deepening depth first search program to find the best path from Class Room Building
+ * A to the Conference Center.
+ */
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        FileReader reader = new FileReader();
-        String json = reader.readFile("campus.json");
+    public static void main(String[] args) {
+        Graph graph = new Graph("campus.json");
+        graph.print();
 
-        System.out.println(json);
-
-        Gson gson = new Gson();
-        JsonObject j = new JsonObject();
-
+        IterativeDeepeningDFS iddfs = new IterativeDeepeningDFS(graph);
     }
 
 }

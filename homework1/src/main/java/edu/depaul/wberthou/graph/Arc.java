@@ -1,8 +1,11 @@
-package edu.depaul.wberthou;
+package edu.depaul.wberthou.graph;
 
 public class Arc {
+    /** Source **/
     protected Node first;
+    /** Destination **/
     protected Node second;
+    /** Weight **/
     protected int distance;
 
     public Arc() {
@@ -37,5 +40,14 @@ public class Arc {
 
     public void setDistance(int distance) {
         this.distance = distance;
+    }
+
+    @Override
+    public String toString() {
+        return "Arc{" +
+                "first_node=" + first +
+                ", second_node=" + second +
+                ", distance=" + distance +
+                '}';
     }
 }
