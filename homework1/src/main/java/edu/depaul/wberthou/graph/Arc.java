@@ -50,4 +50,5 @@ public class Arc {
                 ", distance=" + distance +
                 '}';
     }
+
 }
