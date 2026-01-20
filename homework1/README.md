@@ -1,3 +1,5 @@
+# CSC480 - Artificial Intelligence I, Assignment 1
+
 William Berthouex <br>
 CSC480 - Artificial Intelligence I <br>
 Section 810 <br>
@@ -5,17 +7,19 @@ Fall 2026 <br>
 Assignment 1 <br>
 Due January 28, 2026
 
-# CSC480 - Artificial Intelligence I, Assignment 1
+---
+
+## Run
 
 This project was built using Gradle v8.14
 
-To run, enter the following in the terminal from the root directory:
+To run, enter the following in the terminal from the directory homework1:
 
 >./gradlew run
 
 ---
 
-## Assignment
+## Assignment Questions
 
 1. 20 Points: Question 3.21 Prove each of the following statements, or give a
    counterexample:
@@ -32,9 +36,9 @@ To run, enter the following in the terminal from the root directory:
 5. 20 Points: Adversial search heuristics
 
 
-## Libraries
+## Links
 
-This project uses Google's **Gson** library to parse Json files.
+Complete code on GitHub [here](https://github.com/StateControlled/CSC480-AI/tree/main/homework1)
 
-[Gson Github Repository](https://github.com/google/gson)
+This project uses Google's **Gson** library to parse Json files: [Gson GitHub Repository](https://github.com/google/gson)
 
