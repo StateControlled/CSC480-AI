@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 /**
- * This class was modified from an AI-generated response. See problem3.md for complete explanation.
+ * This class was modified from an AI-generated response. See problem3-full-disclosure.md for complete explanation.
  */
 public class AStar {
     private final Map<Node, Node> cameFrom = new HashMap<>();
