@@ -12,6 +12,10 @@ public class Arc {
 
     }
 
+    public Arc(Node first, Node second) {
+        this(first, second, 0);
+    }
+
     public Arc(Node first, Node second, int distance) {
         this.first = first;
         this.second = second;
@@ -40,6 +44,10 @@ public class Arc {
 
     public void setDistance(int distance) {
         this.distance = distance;
+    }
+
+    public boolean weaklyEquals(Arc other) {
+        return this.first.equals(other.first) && this.second.equals(other.second);
     }
 
     @Override

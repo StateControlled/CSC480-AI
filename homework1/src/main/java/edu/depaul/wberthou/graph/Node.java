@@ -1,10 +1,12 @@
 package edu.depaul.wberthou.graph;
 
+import edu.depaul.wberthou.util.MathUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Node {
+public class Node implements Comparable<Node> {
     protected String name;
     protected int x;
     protected int y;
@@ -57,14 +59,6 @@ public class Node {
         this.children.add(child);
     }
 
-    public int numberOfChildren() {
-        return children.size();
-    }
-
-    public boolean hasChildren() {
-        return !children.isEmpty();
-    }
-
     public List<Node> getChildren() {
         return children;
     }
@@ -77,26 +71,22 @@ public class Node {
         if (!(object instanceof Node node)) {
             return false;
         }
-        return x == node.x && y == node.y && Objects.equals(name, node.name);
+        return x == node.x && y == node.y && name.equals(node.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, x, y);
+        return 219 + Objects.hash(name, x, y);
     }
 
     @Override
     public String toString() {
-        String childList = childrenToString();
+        String childList = collectChildren();
 
-        return "Node{" +
-                "name=\"" + name + '\"' +
-                ", position=(" + x + "," + y + ')' +
-                ", children=" + childList +
-                '}';
+        return String.format("Node [\"%s\", Coordinates (%3d, %3d), Connections: %s]", name, x, y, childList);
     }
 
-    private String childrenToString() {
+    private String collectChildren() {
         if (children.isEmpty()) {
             return "NONE";
         }
@@ -113,6 +103,21 @@ public class Node {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Node other) {
+//        // sort by x, then sort by y
+//        int xCompare = Integer.compare(this.x, other.x);
+//        if (xCompare != 0) {
+//            return xCompare;
+//        }
+//        return Integer.compare(this.y, other.y);
+        return (int) distanceBetween(this, other);
+    }
+
+
+    public static double distanceBetween(Node first, Node second) {
+        return MathUtils.distance(first.x, first.y, second.x, second.y);
+    }
 
 }
 

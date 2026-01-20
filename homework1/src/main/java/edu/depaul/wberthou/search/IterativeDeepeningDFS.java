@@ -10,27 +10,34 @@ import java.util.List;
  * @see <a href="https://www.geeksforgeeks.org/dsa/iterative-deepening-searchids-iterative-deepening-depth-first-searchiddfs/">Geeks for Geeks:Iterative Deepening Depth-First Search</a>
  */
 public class IterativeDeepeningDFS {
-    private static final int DEPTH = 32;
+    private int depth;
     private Node target;
 
     public IterativeDeepeningDFS() {
+        this.depth = Integer.MAX_VALUE;
+    }
 
+    public IterativeDeepeningDFS setMaxSearchDepth(int maxSearchDepth) {
+        this.depth = maxSearchDepth;
+        return this;
     }
 
     public void setTarget(Node target) {
         this.target = target;
     }
 
-    public Node iterativeDeepeningDepthFirstSearch(Node root) {
+    public List<Node> iterativeDeepeningDepthFirstSearch(Node root) {
         List<Node> solutionPath = new ArrayList<>();
 
-        for (int i = 0; i < DEPTH; i++) {
-            InternalSolution solution = depthLimitedSearch(root, target, DEPTH);
+        for (int i = 0; i < depth; i++) {
+            InternalSolution solution = depthLimitedSearch(root, target, depth, solutionPath);
 
             if (solution.foundTarget()) {
-                return solution.found;
+                System.out.println("Found target! Target: " + target.getName());
+                return solutionPath;
             } else if (!solution.hasRemaining()) {
-                return null;
+                solutionPath.clear();
+                return List.of();
             }
             // else continue
         }
@@ -38,7 +45,9 @@ public class IterativeDeepeningDFS {
         return null;
     }
 
-    protected InternalSolution depthLimitedSearch(Node node, Node target, int depth) {
+    private InternalSolution depthLimitedSearch(Node node, Node target, int depth, List<Node> path) {
+        System.out.println("Visiting node " + node.getName());
+        path.add(node);
         if (isGoal(node, target)) {
             return new InternalSolution(node, true);
         }
@@ -50,12 +59,14 @@ public class IterativeDeepeningDFS {
         boolean anyRemaining = false;
 
         for (Node child : node.getChildren()) {
-            InternalSolution s = depthLimitedSearch(child, target, depth - 1);
+            InternalSolution solution = depthLimitedSearch(child, target, depth - 1, path);
 
-            if (s.foundTarget()) {
-                return new InternalSolution(s.found, true);
+            if (solution.foundTarget()) {
+                return new InternalSolution(solution.found, true);
+            } else {
+                path.removeLast();
             }
-            if (s.hasRemaining()) {
+            if (solution.hasRemaining()) {
                 anyRemaining = true;
             }
         }
@@ -67,7 +78,7 @@ public class IterativeDeepeningDFS {
         return candidate.getName().equalsIgnoreCase(target.getName());
     }
 
-    public record InternalSolution(Node found, boolean remaining) {
+    private record InternalSolution(Node found, boolean remaining) {
         public boolean foundTarget() {
             return found != null;
         }
