@@ -28,9 +28,18 @@ To run, enter the following in the terminal from the directory homework1:
 
 #### Problem 2. 20 Points: Iterative Deepening Depth First Search
 
+See edu.depaul.wberthou.search.IterativeDeepeningDFS.java for implementation.
+
 #### Problem 3. 20 Points: A* Search
 
+See edu.depaul.wberthou.search.AStar.java for implementation. 
+See problem3-full-disclosure.md for information on AI-generated answer to this problem.
+
 #### Problem 4. 20 Points: Adversial search heuristics functions
+
+The Minimax algorithm assumes optimal moves from 'players.' Computing the hueristic at nodes A and B defeats the purpose
+of searching ahead for the best move. Since C and D are states that are a result of A, computing the hueristic at A effectively
+means the move or reward is counted twice.
 
 #### Problem 5. 20 Points: Adversial search heuristics
 
